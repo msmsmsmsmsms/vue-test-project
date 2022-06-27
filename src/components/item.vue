@@ -1,22 +1,47 @@
 <template>
     <div class="item">
+        <div class="rm" v-on:click="$emit('remove-item', p.id)"><img src="@/assets/rm.png"></div>
         <div class="photo">
-            <img src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2022/01/white-polaroid-onestep-2-instant-camera-featured-image-cropped.jpg"
-                alt="Фото_товара">
+            <img v-bind:src="p.img_link" alt="Фото_товара">
         </div>
-        <h2>Наименование товара</h2>
-        <p>Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в
-            несколько строк</p>
-        <h1>10 000 руб.</h1>
+        <h2>{{ p.name }}</h2>
+        <p>{{ p.about }}</p>
+        <h1>{{ p.price + ' руб.' }}</h1>
     </div>
 </template>
 
-<script>
+<script> 
 
+export default {
+    props: {
+        p: {
+            type: Object,
+            required: true
+        }
+    }
+}
 </script>
 
 <style scoped>
+.rm {
+    position: absolute;
+    right: -8px;
+    top:-8px;
+    background: #FF8484;
+    width: 32px;
+    height: 32px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 6px;
+    display: none;
+}
+
+.item:hover .rm {
+    display: initial;
+}
+
 .item {
+    position: relative;
     width: 332px;
     height: 423px;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
@@ -49,6 +74,7 @@ h2 {
 }
 
 p {
+    height: 80px;
     padding: 0 16px;
     font-weight: 400;
     font-size: 16px;

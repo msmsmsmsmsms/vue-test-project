@@ -23,4 +23,10 @@ export default {
     justify-content: space-between;
     margin-bottom: 16px;
 }
+
+h1 {
+    font-weight: 600;
+    font-size: 28px;
+    color: #3F3F3F;
+}
 </style>

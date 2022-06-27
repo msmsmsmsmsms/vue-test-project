@@ -1,26 +1,20 @@
 <template>
     <div class="item_list">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item v-for="(p, i) in product" v-bind:p="p" v-on:remove-item="removeItem" v-bind:index="i"></item>
     </div>
 </template>
 
 <script>
 import item from '@/components/item'
 export default {
-    name: 'item_list',
+    props: ['product'],
     components: {
         item
+    },
+    methods: {
+        removeItem(id) {
+            this.$emit('remove-item', id)
+        }
     }
 }
 </script>
